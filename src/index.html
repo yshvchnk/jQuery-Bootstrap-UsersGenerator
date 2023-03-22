@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>User Info</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+            integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="user-info col-sm-6 col-xs-12">
+                    <div class="user-info-card">
+                        <h2>User's Info Card</h2>
+                        <div class="userinfo-img">
+                            <img
+                                src="img/man-pic.png"
+                                alt="User's avatar"
+                                id="usercard-avatar"
+                            />
+                        </div>
+                        <p class="user-name" id="usercard-name">Sam Peters</p>
+                        <p class="user-email" id="usercard-email">
+                            sam.peters@gmail.com
+                        </p>
+                        <p class="user-phone" id="usercard-phone">
+                            +(380) 99 999-99-99
+                        </p>
+                    </div>
+                </div>
+
+                <div class="buttons col-sm-6 col-xs-12">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="generate-user"
+                    >
+                        Generate User
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        id="create-user"
+                    >
+                        Create User
+                    </button>
+                </div>
+
+                <div class="table-container col-xs-12">
+                    <div class="table-responsive">
+                        <h2>Latest Generated Users</h2>
+                        <table class="table" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Avatar</th>
+                                    <th>Name Surname</th>
+                                    <th>E-mail</th>
+                                    <th>Phone Number</th>
+                                    <th>Learn More</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="table-pic">
+                                        <img
+                                            src="img/man-pic.png"
+                                            alt="User's avatar"
+                                        />
+                                    </td>
+                                    <td>Sam Peters</td>
+                                    <td>sam.peters@gmail.com</td>
+                                    <td>+(380) 99 999-99-99</td>
+                                    <td>
+                                        <button
+                                            class="btn btn-primary btn-small btn-more"
+                                            value="test"
+                                        >
+                                            Learn More
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal generate user -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modal-generate">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Generate User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label for="cars">Select a gender:</label>
+                        <select name="gender" id="gender-select">
+                            <option value="">None</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer modal-generate-footer">
+                        <div id="spinner-request">
+                            <img src="img/spinner.gif" alt="spinner" />
+                        </div>
+                        <div id="message-request">Message</div>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="generate"
+                        >
+                            Generate
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal create user -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modal-create">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Create User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="form-create-user">
+                            <div class="form-group">
+                                <label
+                                    for="fullname-form"
+                                    class="col-sm-3 control-label"
+                                    >Full Name</label
+                                >
+                                <div class="col-sm-9">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="fullname-form"
+                                        placeholder="Full Name"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="email-form"
+                                    class="col-sm-3 control-label"
+                                    >E-Mail</label
+                                >
+                                <div class="col-sm-9">
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="email-form"
+                                        placeholder="Email"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="phone-form"
+                                    class="col-sm-3 control-label"
+                                    >Phone Number</label
+                                >
+                                <div class="col-sm-9">
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+                                        id="phone-form"
+                                        placeholder="Phone Number"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="address-form"
+                                    class="col-sm-3 control-label"
+                                    >Address</label
+                                >
+                                <div class="col-sm-9">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="address-form"
+                                        placeholder="Address"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="gender-form"
+                                    class="col-sm-3 control-label"
+                                    >Gender</label
+                                >
+                                <div class="col-sm-9">
+                                    <select
+                                        name="gender-form"
+                                        id="gender-form"
+                                        class="create-form_select"
+                                        required
+                                    >
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="avatar-form"
+                                    class="col-sm-3 control-label"
+                                    >Avatar</label
+                                >
+                                <div class="col-sm-9">
+                                    <input
+                                        type="file"
+                                        accept="image/png, image/jpeg"
+                                        id="avatar-form"
+                                    />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">
+                                    Create
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal with info -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="user-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Detailed User Info</h4>
+                    </div>
+                    <div class="modal-body-info">
+                        <div>
+                            <div class="col-sm-12 user-info-avatar">
+                                <img id="avatar-info" src="" alt="Avatar" />
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="col-sm-3 control-label"
+                                for="name-info"
+                                >Full Name</label
+                            >
+                            <div class="col-sm-9">
+                                <p id="name-info">Name</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="col-sm-3 control-label"
+                                for="email-info"
+                                >Email</label
+                            >
+                            <div class="col-sm-9">
+                                <p id="email-info">Email</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="col-sm-3 control-label"
+                                for="phone-info"
+                                >Phone Number</label
+                            >
+                            <div class="col-sm-9">
+                                <p id="phone-info">Phone</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="col-sm-3 control-label"
+                                for="gender-info"
+                                >Gender</label
+                            >
+                            <div class="col-sm-9">
+                                <p id="gender-info">Gender</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="col-sm-3 control-label"
+                                for="address-info"
+                                >Address</label
+                            >
+                            <div class="col-sm-9">
+                                <p id="address-info">Address</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer modal-generate-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/jquery.mask.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
